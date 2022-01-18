@@ -1,0 +1,108 @@
+nav:first-child span{
+    color: white !important;
+    word-break: break-all;
+}
+nav:first-child span a{
+    color: white !important;
+    text-decoration: none;
+    font-weight: bold;
+}
+nav:first-child span a:hover{
+    color: #27ff00 !important;
+    text-decoration: underline;
+}
+footer ul a:hover{
+    color: #27ff00 !important;
+}
+footer .row div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dropdown-toggle{
+    color: white !important;
+}
+.dropdown-menu{
+    background-color: #292b2c !important;
+}
+.dropdown-item{
+    color: #a9a9a9 !important;
+}
+.dropdown-item:hover{
+    color: white !important;
+    background-color: #22005f !important;
+}
+.dropdown-menu li:hover{
+    background-color: #bf04b9 !important;
+}
+.btn-outline-purple{
+    border: 1px solid #bf04b9;
+    color: #bf04b9;
+    background-color: transparent;
+}
+.btn-outline-purple:hover{
+    color: white;
+    background-color: #bf04b9;
+}
+.btn-purple-li{
+    color: white;
+    background-color: #22005f;
+    border: 1px solid #22005f;
+}
+.btn-purple-li:hover{
+    background-color: #31195d;
+    border: 1px solid #31195d;
+    color: white;
+}
+@media (min-width: 992px){
+    #search-li{
+        display: none;
+    }
+    nav:last-child hr{
+        display: none;
+    }
+}
+@media (max-width: 991px){
+    #search{
+        display: none!important;
+    }
+}
+#endereco ul{
+    list-style-type: disclosure-closed;
+}
+#contato ul{
+    list-style-type: none;
+    padding-left: inherit;
+}
+#contato i{
+    font-size: 25px;
+}
+#contato li{
+    margin-bottom: 1em;
+}
+.navbar-brand{
+    margin-left: 10px;
+}
+nav:last-child hr{
+    background-color: #004827;
+    padding: 1px 0;
+    opacity: 0.5;
+}
+.card{
+    padding-top: calc(var(--bs-gutter-x)/ 2);
+    border-radius: 10px;
+}
+.card img{
+    border-radius: 10px;
+    border: 1px solid #c5c5c5;
+}
+.card:hover{
+    box-shadow: 0px 0px 10px;
+    transition: 0.1s linear all;
+    cursor: pointer;
+    padding: 0;
+}
+.card:hover img{
+    border-radius: 10px 10px 0px 0px;
+    border: none;
+}
