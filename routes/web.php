@@ -15,3 +15,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 
 Route::get('/', [ShopController::class, "index"]);
+
+Route::get('/vestuario/{type}', [ShopController::class, "vestuario"]);
+Route::get('/jogos/{type}', [ShopController::class, "jogos"]);
+Route::get('/colecionaveis/{type}', [ShopController::class, "colecionaveis"]);
+Route::get('/acessorios/{type}', [ShopController::class, "acessorios"]);
+

@@ -49,10 +49,10 @@
                                 Vestuário
                             </a>
                             <ul class="dropdown-menu me-3 ms-lg-0" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Chapeus</a></li>
-                                <li><a class="dropdown-item" href="#">Oculos</a></li>
-                                <li><a class="dropdown-item" href="#">Moletons</a></li>
-                                <li><a class="dropdown-item" href="#">Camisas</a></li>
+                                <li><a class="dropdown-item" href="/vestuario/chapeus">Chapéus</a></li>
+                                <li><a class="dropdown-item" href="/vestuario/oculos">Óculos</a></li>
+                                <li><a class="dropdown-item" href="/vestuario/moletons">Moletons</a></li>
+                                <li><a class="dropdown-item" href="/vestuario/camisas">Camisas</a></li>
                             </ul>
                         </li>
                         <li class="nav-item ms-3 ms-lg-0 dropdown">
@@ -60,8 +60,8 @@
                                 Jogos
                             </a>
                             <ul class="dropdown-menu me-3 ms-lg-0" aria-labelledby="navbarDropdownMenuLink1">
-                                <li><a class="dropdown-item" href="#">Tabuleiros</a></li>
-                                <li><a class="dropdown-item" href="#">RPG</a></li>
+                                <li><a class="dropdown-item" href="/jogos/tabuleiros">Tabuleiros</a></li>
+                                <li><a class="dropdown-item" href="/jogos/rpg">RPG</a></li>
                             </ul>
                         </li>
                         <li class="nav-item ms-3 ms-lg-0 dropdown">
@@ -69,11 +69,11 @@
                                 Colecionáveis
                             </a>
                             <ul class="dropdown-menu me-3 ms-lg-0" aria-labelledby="navbarDropdownMenuLink2">
-                                <li><a class="dropdown-item" href="#">Pôsters</a></li>
-                                <li><a class="dropdown-item" href="#">Action figures</a></li>
-                                <li><a class="dropdown-item" href="#">Pop</a></li>
-                                <li><a class="dropdown-item" href="#">Pelucias</a></li>
-                                <li><a class="dropdown-item" href="#">Lego</a></li>
+                                <li><a class="dropdown-item" href="/colecionaveis/posters">Pôsters</a></li>
+                                <li><a class="dropdown-item" href="/colecionaveis/actionFigures">Action figures</a></li>
+                                <li><a class="dropdown-item" href="/colecionaveis/pop">Pop</a></li>
+                                <li><a class="dropdown-item" href="/colecionaveis/pelucias">Pelúcias</a></li>
+                                <li><a class="dropdown-item" href="/colecionaveis/lego">Lego</a></li>
                             </ul>
                         </li>
                         <li class="nav-item ms-3 ms-lg-0 dropdown">
@@ -81,11 +81,11 @@
                                 Acessórios
                             </a>
                             <ul class="dropdown-menu me-3 ms-lg-0" aria-labelledby="navbarDropdownMenuLink3">
-                                <li><a class="dropdown-item" href="#">Mochilas</a></li>
-                                <li><a class="dropdown-item" href="#">Chaveiros</a></li>
-                                <li><a class="dropdown-item" href="#">Maquiagem</a></li>
-                                <li><a class="dropdown-item" href="#">Bijuterias</a></li>
-                                <li><a class="dropdown-item" href="#">Fones personalizados</a></li>
+                                <li><a class="dropdown-item" href="/acessorios/">Mochilas</a></li>
+                                <li><a class="dropdown-item" href="/acessorios/chaveiros">Chaveiros</a></li>
+                                <li><a class="dropdown-item" href="/acessorios/maquiagem">Maquiagem</a></li>
+                                <li><a class="dropdown-item" href="/acessorios/bijuterias">Bijuterias</a></li>
+                                <li><a class="dropdown-item" href="/acessorios/fones">Fones personalizados</a></li>
                             </ul>
                         </li>
                     </ul>     
