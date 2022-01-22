@@ -2,14 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Produto
+class Produto extends Model
 {
-    public $id;
-    public $nome;
-    public $descricao;
-    public $data_criacao;
-    public $quant_estoque;
-    public $preco;
-    public $tipo;
+    use HasFactory;
 }

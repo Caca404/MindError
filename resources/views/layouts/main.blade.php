@@ -18,20 +18,22 @@
     <body style="background-color: #5d4c7a">
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #22005f;">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="d-flex">
                         <button class="navbar-toggler h-50 align-self-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <a href="/" class="navbar-brand text-center">
-                            <h1 id="nome_site">Error Mind</h1>
+                            <h1 id="nome_site">ErrorMind</h1>
                         </a>
                     </div>
                     <form class="d-flex col-5" id="search">
                         <input class="form-control me-2" type="search" placeholder="Pesquisar..." aria-label="Search">
                         <button class="btn btn-success" type="submit">Buscar</button>
                     </form>
-                    <span class="text-center"><a href="#" id="teste">Login</a> ou <a href="#">Crie uma conta</a></span>
+                    @guest
+                        <span class="text-center"><a href="/login" id="teste">Login</a> ou <a href="/register">Crie uma conta</a></span>    
+                    @endguest
                 </div>
             </nav>
             <nav class="navbar navbar-expand-lg navbar-dark bg-success">
@@ -92,7 +94,7 @@
                 </div>
             </nav>
         </header>
-        <main class="container bg-light p-5">
+        <main class="container-xl bg-light p-5">
 
             @yield('content')
 

@@ -114,3 +114,8 @@ nav:last-child hr{
     border-radius: 10px 10px 0px 0px;
     border: none;
 }
+@media (min-width: 1200px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 1200px !important;
+    }
+}

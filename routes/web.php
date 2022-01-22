@@ -21,3 +21,7 @@ Route::get('/jogos/{type}', [ShopController::class, "jogos"]);
 Route::get('/colecionaveis/{type}', [ShopController::class, "colecionaveis"]);
 Route::get('/acessorios/{type}', [ShopController::class, "acessorios"]);
 
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
