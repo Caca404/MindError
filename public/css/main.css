@@ -14,6 +14,14 @@ nav:first-child span a:hover{
 footer ul a:hover{
     color: #27ff00 !important;
 }
+footer ul li{
+    display: inline;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+footer ul{
+    padding-left: 0 !important;
+}
 footer .row div{
     display: flex;
     flex-direction: column;
@@ -23,14 +31,14 @@ footer .row div{
     color: white !important;
 }
 .dropdown-menu{
-    background-color: #292b2c !important;
+    background-color: white !important;
 }
 .dropdown-item{
-    color: #a9a9a9 !important;
+    color: black !important;
 }
 .dropdown-item:hover{
-    color: white !important;
-    background-color: #22005f !important;
+    color: black !important;
+    background-color: #b28df8 !important;
 }
 .dropdown-menu li:hover{
     background-color: #bf04b9 !important;

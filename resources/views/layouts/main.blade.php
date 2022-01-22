@@ -15,7 +15,7 @@
                             </form> -->
         <link rel="stylesheet" type="text/css" href="/css/main.css">
     </head>
-    <body style="background-color: #34264c">
+    <body style="background-color: #5d4c7a">
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #22005f;">
                 <div class="container-fluid">
@@ -24,7 +24,7 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <a href="/" class="navbar-brand text-center">
-                            <img src="/img/Error3.png">
+                            <h1 id="nome_site">Error Mind</h1>
                         </a>
                     </div>
                     <form class="d-flex col-5" id="search">
@@ -99,20 +99,11 @@
         </main>
         <footer class="container-fluid text-white" style="background-color: #22005f;">
             <div class="row">
-                <div class="col-12 col-sm-6 pt-3" id="contato">
-                    <h3>Contatos</h3>
+                <div class="mx-auto pt-3" id="contato">
                     <ul>
                         <li><i class="fab fa-whatsapp fa-lg me-1"></i> +55 (84)92342-4223</li>
                         <li><i class="fab fa-facebook fa-lg me-1"></i> <a href="#" class="text-white">facebook.com/2x>y</a></li>
                         <li><i class="fab fa-twitter fa-lg me-1"></i> <a href="#" class="text-white">@2x>y</a></li>
-                    </ul>
-                </div>
-                <div class="col-12 col-sm-6 pt-3" id="endereco">
-                    <h3>Endereços das lojas</h3>
-                    <ul>
-                        <li><address>Av. Pres. Café Filho - Nº40</address></li>    
-                        <li><address>Av. Pres. Café Filho - Nº40</address></li>    
-                        <li><address>Av. Pres. Café Filho - Nº40</address></li>    
                     </ul>
                 </div>
             </div>
@@ -127,6 +118,14 @@
     <script type="text/javascript">
         $(".card").click(function(){
             window.location.reload();
+        });
+
+        $(".dropdown-toggle").mouseenter(function(){
+            $(".dropdown-toggle").each(function(){
+                (new bootstrap.Dropdown($(this))).hide();
+            });
+            (new bootstrap.Dropdown($(this))).show();
+            $(this).css('outline', 'none');
         });
     </script>
 </html>
