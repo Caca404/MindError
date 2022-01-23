@@ -119,3 +119,10 @@ nav:last-child hr{
         max-width: 1200px !important;
     }
 }
+.card{
+    width: 250px;
+    padding: 12px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
