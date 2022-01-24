@@ -28,6 +28,7 @@
                         </a>
                     </div>
                     <form class="d-flex col-5" id="search">
+                        @csrf
                         <input class="form-control me-2" type="search" placeholder="Pesquisar..." aria-label="Search">
                         <button class="btn btn-success" type="submit">Buscar</button>
                     </form>
@@ -117,17 +118,5 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript">
-        $(".card").click(function(){
-            window.location.reload();
-        });
-
-        $(".dropdown-toggle").mouseenter(function(){
-            $(".dropdown-toggle").each(function(){
-                (new bootstrap.Dropdown($(this))).hide();
-            });
-            (new bootstrap.Dropdown($(this))).show();
-            $(this).css('outline', 'none');
-        });
-    </script>
+    <script src="/js/main.js"></script>
 </html>

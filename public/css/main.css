@@ -126,3 +126,8 @@ nav:last-child hr{
     margin-left: 10px;
     margin-bottom: 20px;
 }
+
+.image_produto{
+    display: flex;
+    justify-content: center;
+}

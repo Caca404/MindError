@@ -32,6 +32,15 @@ class ShopController extends Controller
         ]);
     }
 
+    public function produto($id){
+
+        $produto = Produto::findOrFail($id);
+
+    	return view("produto", [
+            "produto" => $produto
+        ]);
+    }
+
     public function vestuario($type){
 
     	return view("vestuario", [
