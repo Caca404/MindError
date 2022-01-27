@@ -131,3 +131,15 @@ nav:last-child hr{
     display: flex;
     justify-content: center;
 }
+
+.card_link{
+    text-decoration: none;
+    color: black;
+}
+.card_link:hover{
+    color: black;
+}
+
+.user{
+    cursor: pointer;
+}

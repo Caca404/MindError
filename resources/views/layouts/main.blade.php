@@ -32,6 +32,23 @@
                         <input class="form-control me-2" type="search" placeholder="Pesquisar..." aria-label="Search">
                         <button class="btn btn-success" type="submit">Buscar</button>
                     </form>
+                    @auth
+                        <li class="nav-item dropstart dropdown" style="list-style-type: none">
+                            <picture class="user dropdown-toggle" id="user_account" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img style="color:white;" src="/img/account.svg" alt="TEste"> 
+                            </picture>
+                            <ul class="dropdown-menu me-3 ms-lg-0" aria-labelledby="user_account">
+                                <li>
+                                    <form action="/logout" method="POST">
+                                        @csrf
+                                        <a class="dropdown-item" href="/logout" onclick="event.preventDefault();this.closest('form').submit();">
+                                            Sair
+                                        </a>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @endauth
                     @guest
                         <span class="text-center"><a href="/login" id="teste">Login</a> ou <a href="/register">Crie uma conta</a></span>    
                     @endguest

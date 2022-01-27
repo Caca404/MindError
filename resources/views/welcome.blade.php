@@ -9,42 +9,16 @@
         </div>
         <div class="row mt-3">
             <div class="d-flex flex-row align-content-around flex-wrap h-100">
-                <div class="card">
-                    <img src="/img/Camisa1.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="/img/Camisa2.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="/img/Camisa3.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="/img/Camisa3.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
                 @foreach ($produtos as $produto)
-                    <div class="card">
-                        <img src="/img/Camisa3.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $produto->nome }}</h5>
-                            <p class="card-text">{{ $produto->descricao }}</p>
+                    <a href="/produto/{{ $produto->id }}" class="card_link">
+                        <div class="card">
+                            <img src="/img/Camisa3.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $produto->nome }}</h5>
+                                <p class="card-text">{{ $produto->descricao }}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         </div>

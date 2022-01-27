@@ -12,14 +12,8 @@ $(".dropdown-toggle").mouseenter(function(){
 
 $(".tamanhos div").click(function(){
     $(".tamanhos div").each(function(){
-        $(this).css({
-            "background-color" : "rgb("+228+","+228+","+228+")",
-            "color" : "black"
-        });
+        if($(this).hasClass('clicked')) $(this).removeClass('clicked');
     });
 
-    $(this).css({
-        "background-color": "rgb("+122+","+0+","+146+")",
-        "color" : "white"
-    });
+    $(this).addClass('clicked');
 });

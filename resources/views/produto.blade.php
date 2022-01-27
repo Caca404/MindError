@@ -12,17 +12,21 @@
             text-align: center;
             font-size: 22px;
         }
-
         .tamanhos div:not(:first-child){
             margin: 0 10px;
         }
-
         .tamanhos div:first-child{
             margin-right:10px;
         }
-
         .tamanhos div:hover{
             background-color: darkgray;
+        }
+        .clicked{
+            background-color: rgb(122,0,146) !important;
+            color: white!important;
+        }
+        .clicked:hover{
+            background-color: rgb(150, 25, 175) !important;
         }
 
 
