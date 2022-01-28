@@ -21,6 +21,10 @@ Route::get('/jogos/{type}', [ShopController::class, "jogos"]);
 Route::get('/colecionaveis/{type}', [ShopController::class, "colecionaveis"]);
 Route::get('/acessorios/{type}', [ShopController::class, "acessorios"]);
 Route::get('/produto/{id}', [ShopController::class, "produto"]);
+Route::get('/addProduto', [ShopController::class, "addProduto"]);
+
+
+Route::post('/addProduto', [ShopController::class, "adicionarProduto"]);
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

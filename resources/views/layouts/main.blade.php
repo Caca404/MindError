@@ -39,6 +39,9 @@
                             </picture>
                             <ul class="dropdown-menu me-3 ms-lg-0" aria-labelledby="user_account">
                                 <li>
+                                    <a class="dropdown-item" href="/addProduto">Adicionar Produto</a>
+                                </li>
+                                <li>
                                     <form action="/logout" method="POST">
                                         @csrf
                                         <a class="dropdown-item" href="/logout" onclick="event.preventDefault();this.closest('form').submit();">

@@ -41,6 +41,16 @@ class ShopController extends Controller
         ]);
     }
 
+    public function addProduto(){
+
+    	return view("addProduto");
+    }
+
+    public function adicionarProduto(){
+
+    	return view("/");
+    }
+
     public function vestuario($type){
 
     	return view("vestuario", [
