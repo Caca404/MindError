@@ -12,7 +12,7 @@
                 @foreach ($produtos as $produto)
                     <a href="/produto/{{ $produto->id }}" class="card_link">
                         <div class="card">
-                            <img src="/img/Camisa3.jpg" class="card-img-top" alt="...">
+                            <img src="{{ $produto->image == "" ? 'img/Camisa3.jpg' : 'img/produtos/'.$produto->image }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $produto->nome }}</h5>
                                 <p class="card-text">{{ $produto->descricao }}</p>

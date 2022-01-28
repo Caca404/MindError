@@ -46,9 +46,33 @@ class ShopController extends Controller
     	return view("addProduto");
     }
 
-    public function adicionarProduto(){
+    public function adicionarProduto(Request $request){
 
-    	return view("/");
+        $produto = new Produto();
+        $produto->nome = $request->nome;
+        $produto->quant_estoque = 10;
+        $produto->preco = $request->preco;
+        $produto->tipo = $request->tipo;
+        $produto->descricao = $request->descricao;
+        
+        if($request->hasFile('img') && $request->file('img')->isValid()){
+            
+            $requestImage = $request->img;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName().strtotime('now').".".$extension);
+
+            $requestImage->move(public_path('img/produtos'), $imageName);
+
+            $produto->image = $imageName;
+
+        }
+
+
+        $produto->save();
+
+    	return redirect("/");
     }
 
     public function vestuario($type){

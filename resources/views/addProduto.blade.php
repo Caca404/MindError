@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="container">
-    <form class="container" action="" method="post" enctype="multipart/form-data">
+    <form class="container" action="/addProduto" method="post" enctype="multipart/form-data">
         @csrf
         <h1>Adicionar Produto</h1>
         <hr  class="my-4">
@@ -20,14 +20,14 @@
             </div>
             <div class="col-12 col-md-6">
                 <label for="img" class="form-label">Imagem</label>
-                <input type="file" name="img" id="img" multiple class="form-control">
+                <input type="file" name="img" id="img" class="form-control">
             </div>
             <div class="col-12 col-md-6">
                 <label for="tipo" class="form-label">Tipo</label>
                 <select name="tipo" id="tipo" class="form-select" required>
                     <option value="" disabled selected>Escolha um tipo</option>
-                    <option value="">Camisa</option>
-                    <option value="">Óculos</option>
+                    <option value="camisa">Camisa</option>
+                    <option value="oculos">Óculos</option>
                 </select>
             </div>
             <div class="col-12">
