@@ -8,21 +8,21 @@ use App\Models\Produto;
 class ShopController extends Controller
 {
     private $titles = array(
-        "chapeus" => "👒 Chapéu",
+        "chapeu" => "👒 Chapéu",
         "oculos" => "🕶️ Óculos",
-        "moletons" => "Moletons",
-        "camisas" => "Camisas",
-        "tabuleiros" => "Tabuleiros",
+        "moletom" => "Moletons",
+        "camisa" => "Camisas",
+        "tabuleiro" => "Tabuleiros",
         "rpg" => "RPG",
-        "posters" => "Pôsters",
-        "actionFigures" => "Action Figures",
+        "poster" => "Pôsters",
+        "actionFigure" => "Action Figures",
         "pop" => "Pop",
-        "pelucias" => "Pelúcias",
+        "pelucia" => "Pelúcias",
         "lego" => "Lego",
-        "mochilas" => "Mochilas",
-        "chaveiros" => "Chaveiros",
+        "mochila" => "Mochilas",
+        "chaveiro" => "Chaveiros",
         "maquiagem" => "Maquiagem",
-        "bijuterias" => "Bijuterias",
+        "bijuteria" => "Bijuterias",
         "fones" => "Fones Personalizados"
     );
 
@@ -74,40 +74,60 @@ class ShopController extends Controller
 
     	return redirect("/");
     }
+    
+    public function pesquisa(){
+
+        $pesquisa = request('search');
+
+        $resultados = Produto::where('nome', 'like', "%".$pesquisa."%")->get();
+
+    	return view("pesquisa", [
+            "search" => $pesquisa,
+            "produtos" => $resultados
+        ]);
+    }
 
     public function vestuario($type){
+
+        $resultados = Produto::where('tipo', '=', $type)->get();
 
     	return view("vestuario", [
             "title" => $this->titles[str_replace("/vestuario/", "", $type)],
             "tipo" => $type,
-            "produtos" => null
+            "produtos" => $resultados
         ]);
     }
 
     public function jogos($type){
 
+        $resultados = Produto::where('tipo', '=', $type)->get();
+
     	return view("jogos", [
             "title" => $this->titles[str_replace("/jogos/", "", $type)],
             "tipo" => $type,
-            "produtos" => null
+            "produtos" => $resultados
         ]);
     }
 
     public function colecionaveis($type){
 
+        $resultados = Produto::where('tipo', '=', $type)->get();
+
     	return view("colecionaveis", [
             "title" => $this->titles[str_replace("/colecionaveis/", "", $type)],
             "tipo" => $type,
-            "produtos" => null
+            "produtos" => $resultados
         ]);
     }
     
     public function acessorios($type){
 
+        $resultados = Produto::where('tipo', '=', $type)->get();
+
     	return view("acessorios", [
             "title" => $this->titles[str_replace("/acessorios/", "", $type)],
             "tipo" => $type,
-            "produtos" => null
+            "produtos" => $resultados
         ]);
     }
 }

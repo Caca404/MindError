@@ -28,6 +28,18 @@
                     <option value="" disabled selected>Escolha um tipo</option>
                     <option value="camisa">Camisa</option>
                     <option value="oculos">Óculos</option>
+                    <option value="moletom">Moletom</option>
+                    <option value="chapeu">Chapéu</option>
+                    <option value="tabuleiro">Tabuleiro</option>
+                    <option value="rpg">RPG</option>
+                    <option value="actionFigure">Action Figure</option>
+                    <option value="pop">Pop</option>
+                    <option value="lego">Lego</option>
+                    <option value="mochila">Mochila</option>
+                    <option value="chaveiro">Chaveiro</option>
+                    <option value="maquiagem">Maquiagem</option>
+                    <option value="bijuteria">Bijuteria</option>
+                    <option value="fones">Fones Personalizados</option>
                 </select>
             </div>
             <div class="col-12">

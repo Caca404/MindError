@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title',  $title)
+@section('title',  $search)
 
 @section('content')
 <div class="row mt-3">

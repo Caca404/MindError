@@ -22,6 +22,7 @@ Route::get('/colecionaveis/{type}', [ShopController::class, "colecionaveis"]);
 Route::get('/acessorios/{type}', [ShopController::class, "acessorios"]);
 Route::get('/produto/{id}', [ShopController::class, "produto"]);
 Route::get('/addProduto', [ShopController::class, "addProduto"]);
+Route::get('/pesquisa', [ShopController::class, "pesquisa"]);
 
 
 Route::post('/addProduto', [ShopController::class, "adicionarProduto"]);
