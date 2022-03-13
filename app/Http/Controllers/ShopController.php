@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ImagemProduto;
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use App\Models\ImagensProduto;
 
 class ShopController extends Controller
 {
@@ -27,8 +29,19 @@ class ShopController extends Controller
     );
 
     public function index(){
+
+        $produtos = array();
+        $todos = Produto::all();
+        $aux = 0;
+        foreach ($todos as $produto) {
+            $imgs = ImagensProduto::whereRaw("id_produto = ?", [$produto->id])->get();
+
+            $produtos[$aux]['produto'] = $produto;
+            $produtos[$aux++]['imgs'] = $imgs;
+        }
+
     	return view("welcome", [
-            "produtos" => Produto::all()
+            "produtos" => $produtos
         ]);
     }
 
@@ -54,23 +67,33 @@ class ShopController extends Controller
         $produto->preco = $request->preco;
         $produto->tipo = $request->tipo;
         $produto->descricao = $request->descricao;
-        
-        if($request->hasFile('img') && $request->file('img')->isValid()){
-            
-            $requestImage = $request->img;
-
-            $extension = $requestImage->extension();
-
-            $imageName = md5($requestImage->getClientOriginalName().strtotime('now').".".$extension);
-
-            $requestImage->move(public_path('img/produtos'), $imageName);
-
-            $produto->image = $imageName;
-
-        }
-
 
         $produto->save();
+        $id_produto = $produto->id;
+
+        if($request->hasFile('img')){
+
+            foreach ($request->file('img') as $img) {
+                if($img->isValid()) {
+
+                    $new_img = new ImagensProduto();
+
+                    $requestImage = $img;
+
+                    $extension = $requestImage->extension();
+
+                    $imageName = md5($requestImage->getClientOriginalName().strtotime('now').".".$extension);
+        
+                    $requestImage->move(public_path('img/produtos'), $imageName);
+        
+                    $new_img->imagem = $imageName;
+                    $new_img->data_type = $extension;
+                    $new_img->id_produto = $id_produto;
+
+                    $new_img->save();
+                }
+            }
+        }
 
     	return redirect("/");
     }

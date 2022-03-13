@@ -20,7 +20,7 @@
             </div>
             <div class="col-12 col-md-6">
                 <label for="img" class="form-label">Imagem</label>
-                <input type="file" name="img" id="img" class="form-control">
+                <input type="file" name="img[]" id="img" class="form-control" multiple>
             </div>
             <div class="col-12 col-md-6">
                 <label for="tipo" class="form-label">Tipo</label>
