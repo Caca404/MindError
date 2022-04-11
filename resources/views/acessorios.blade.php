@@ -4,14 +4,9 @@
 
 @section('content')
 
-@php
-    $multiple = false;
-    if(count($produtos) > 0) $multiple = true;
-@endphp
-
 <div class="row mt-3">
     <div class="d-flex flex-row align-content-around flex-wrap h-100">
-        @if($multiple)
+        @if(count($produtos) > 0)
             @foreach ($produtos as $produto)
                 <a href="/produto/{{ $produto->id }}" class="card_link">
                     <div class="card">
@@ -24,7 +19,7 @@
                 </a>
             @endforeach
         @else
-            <h3>Sem resultados.</h3>
+            <h4>Está sem {{ $tipo }}. 😥</h4>
         @endif
     </div>
 </div>

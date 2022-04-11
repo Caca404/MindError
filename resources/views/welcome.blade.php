@@ -8,21 +8,27 @@
         <div class="row">
             <h1 class="text-center col-12">Destaques</h1>
         </div>
-        <div class="row mt-3">
-            <div class="d-flex flex-row align-content-around flex-wrap h-100">
-                @foreach ($produtos as $produto)
-                    <a href="/produto/{{ $produto['produto']->id }}" class="card_link">
-                        <div class="card">
-                            <img src="{{ $produto['produto']->image == "" ? 'img/Camisa3.jpg' : 'img/produtos/'.$produto['produto']->image }}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $produto['produto']->nome }}</h5>
-                                <p class="card-text">{{ $produto['produto']->descricao }}</p>
+        @if (count($produtos) > 0)
+            <div class="row mt-3">
+                <div class="d-flex flex-row align-content-around flex-wrap h-100">
+                    @foreach ($produtos as $produto)
+                        <a href="/produto/{{ $produto['produto']->id }}" class="card_link">
+                            <div class="card">
+                                <img src="{{ count($produto['imgs']) > 0 ? 'img/produtos/'.$produto['imgs'][0]->imagem : 'img/Camisa3.jpg' }}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $produto['produto']->nome }}</h5>
+                                    <p class="card-text">{{ $produto['produto']->descricao }}</p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                @endforeach
+                        </a>
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @else
+            <div class="row mt-3">
+                <h4>Está sem produtos em destaque. 😥</h4>
+            </div>
+        @endif
     </div>
     <div id="posters" class="mt-5">
         <div class="row">
