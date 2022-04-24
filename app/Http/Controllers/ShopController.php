@@ -84,10 +84,11 @@ class ShopController extends Controller
 
                     $imageName = md5($requestImage->getClientOriginalName().strtotime('now').".".$extension);
         
-                    $requestImage->move(public_path('img/produtos'), $imageName);
+                    $data = base64_encode(file_get_contents($requestImage->getPathName()));
         
+                    $new_img->dataBase64 = $data;
                     $new_img->imagem = $imageName;
-                    $new_img->data_type = $extension;
+                    $new_img->data_type = $requestImage->getMimeType();
                     $new_img->id_produto = $id_produto;
 
                     $new_img->save();
