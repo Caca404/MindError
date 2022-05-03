@@ -1,5 +1,6 @@
-$(".card").click(function(){
-    window.location.reload();
+$(".carousel-inner, .card-body, .cardImgDefault").click(function(){
+    var id = $(this).closest(".card").attr("data-id");
+    location.href = "/produto/"+id;
 });
 
 $(".dropdown-toggle").mouseenter(function(){

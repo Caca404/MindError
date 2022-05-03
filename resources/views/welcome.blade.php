@@ -12,15 +12,26 @@
             <div class="row mt-3">
                 <div class="d-flex flex-row align-content-around flex-wrap h-100">
                     @foreach ($produtos as $produto)
-                        <a href="/produto/{{ $produto['produto']->id }}" class="card_link">
-                            <div class="card">
-                                @if(count($produto['imgs']) > 0)
-                                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                            <div class="card" class="card_link" data-id="{{ $produto['produto']->id }}">
+                                @if(count($produto['imgs']) == 1)
+                                    @if($produto['imgs'][0]->dataBase64 != null)
+                                        <img src="@php
+                                            $temp_file = tempnam(sys_get_temp_dir(), 'prod');
+                                            file_put_contents($temp_file, 'data:'.$produto['imgs'][0]->data_type.';base64,'.$produto['imgs'][0]->dataBase64);
+                                            echo file_get_contents($temp_file); 
+                                        @endphp" class="d-block w-100" alt="...">
+                                    @elseif(isset($produto['imgs'][0]->imagem))
+                                        <img src="{{ 'img/produtos/' . $produto['imgs'][0]->imagem; }}" class="d-block w-100" alt="...">
+                                    @else
+                                        <img src="img/Camisa3.jpg" class="d-block w-100" alt="...">
+                                    @endif
+                                @elseif(count($produto['imgs']) > 0)
+                                    <div id="carouselExampleControls-{{ $produto['produto']->id }}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="0">
                                         <div class="carousel-inner">
                                             @foreach($produto['imgs'] as $img)
-                                                <div class="carousel-item active">
+                                                <div class="carousel-item @php if($loop->first) echo 'active'; @endphp">
                                                     @if($img->dataBase64 != null)
-                                                        <img src="@php 
+                                                        <img src="@php
                                                             $temp_file = tempnam(sys_get_temp_dir(), 'prod');
                                                             file_put_contents($temp_file, 'data:'.$img->data_type.';base64,'.$img->dataBase64);
                                                             echo file_get_contents($temp_file); 
@@ -34,25 +45,24 @@
                                             @endforeach
                                         </div>
                                         <button class="carousel-control-prev" type="button"
-                                            data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                            data-bs-target="#carouselExampleControls-{{ $produto['produto']->id }}" data-bs-slide="prev">
                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                             <span class="visually-hidden">Previous</span>
                                         </button>
                                         <button class="carousel-control-next" type="button"
-                                            data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                            data-bs-target="#carouselExampleControls-{{ $produto['produto']->id }}" data-bs-slide="next">
                                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                             <span class="visually-hidden">Next</span>
                                         </button>
                                     </div>
                                 @else
-                                    <img src="img/Camisa3.jpg" class="card-img-top" alt="...">
+                                    <img src="img/Camisa3.jpg" class="card-img-top cardImgDefault" alt="...">
                                 @endif
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $produto['produto']->nome }}</h5>
                                     <p class="card-text">{{ $produto['produto']->descricao }}</p>
                                 </div>
                             </div>
-                        </a>
                         {{-- <img src="@php
                             
                             if(isset($produto['imgs'][0]->dataBase64)){
