@@ -25,36 +25,6 @@
                                     @else
                                         <img src="img/Camisa3.jpg" class="d-block w-100" alt="...">
                                     @endif
-                                @elseif(count($produto['imgs']) > 0)
-                                    <div id="carouselExampleControls-{{ $produto['produto']->id }}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="0">
-                                        <div class="carousel-inner">
-                                            @foreach($produto['imgs'] as $img)
-                                                <div class="carousel-item @php if($loop->first) echo 'active'; @endphp">
-                                                    @if($img->dataBase64 != null)
-                                                        <img src="@php
-                                                            $temp_file = tempnam(sys_get_temp_dir(), 'prod');
-                                                            file_put_contents($temp_file, 'data:'.$img->data_type.';base64,'.$img->dataBase64);
-                                                            echo file_get_contents($temp_file); 
-                                                        @endphp" class="d-block w-100" alt="...">
-                                                    @elseif(isset($img->imagem))
-                                                        <img src="{{ 'img/produtos/' . $img->imagem; }}" class="d-block w-100" alt="...">
-                                                    @else
-                                                        <img src="img/Camisa3.jpg" class="d-block w-100" alt="...">
-                                                    @endif
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                        <button class="carousel-control-prev" type="button"
-                                            data-bs-target="#carouselExampleControls-{{ $produto['produto']->id }}" data-bs-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Previous</span>
-                                        </button>
-                                        <button class="carousel-control-next" type="button"
-                                            data-bs-target="#carouselExampleControls-{{ $produto['produto']->id }}" data-bs-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Next</span>
-                                        </button>
-                                    </div>
                                 @else
                                     <img src="img/Camisa3.jpg" class="card-img-top cardImgDefault" alt="...">
                                 @endif

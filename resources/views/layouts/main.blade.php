@@ -42,6 +42,9 @@
                                     <a class="dropdown-item" href="/addProduto">Adicionar Produto</a>
                                 </li>
                                 <li>
+                                    <a class="dropdown-item" href="/meusProdutos">Meus Produtos</a>
+                                </li>
+                                <li>
                                     <form action="/logout" method="POST">
                                         @csrf
                                         <a class="dropdown-item" href="/logout" onclick="event.preventDefault();this.closest('form').submit();">

@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title',  "teste")
+@section('title',  $title)
 
 @section('content')
 
@@ -53,12 +53,49 @@
     <section class="container">
         <div class="row">
             <div class="image_produto col-12 col-md-6 me-5">
-                <img src="/img/Poster3.png" class="card-img-top" alt="..." style="width: 24em">
+                @if(count($produto['imgs']) > 0)
+                    <div id="carouselExampleControls-{{ $produto['produto']->id }}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="0">
+                        <div class="carousel-inner">
+                            @foreach($produto['imgs'] as $img)
+                                <div class="carousel-item @php if($loop->first) echo 'active'; @endphp">
+                                    @if($img->dataBase64 != null)
+                                        <img src="@php
+                                            $temp_file = tempnam(sys_get_temp_dir(), 'prod');
+                                            file_put_contents($temp_file, 'data:'.$img->data_type.';base64,'.$img->dataBase64);
+                                            echo file_get_contents($temp_file); 
+                                        @endphp" class="d-block w-100" alt="...">
+                                    @elseif(isset($img->imagem))
+                                        <img src="{{ 'img/produtos/' . $img->imagem; }}" class="d-block w-100" alt="...">
+                                    @else
+                                        <img src="img/Camisa3.jpg" class="d-block w-100" alt="...">
+                                    @endif
+                                </div>
+                                @if($produto['produto']->id == "17")
+                                    @php
+                                        var_dump($produto['imgs']);   
+                                    @endphp
+                                @endif
+                            @endforeach
+                        </div>
+                        <button class="carousel-control-prev" type="button"
+                            data-bs-target="#carouselExampleControls-{{ $produto['produto']->id }}" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button"
+                            data-bs-target="#carouselExampleControls-{{ $produto['produto']->id }}" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                @else
+                    <img src="/img/Poster3.png" class="card-img-top" alt="..." style="width: 24em">
+                @endif
             </div>
             <div class="produto col-12 col-md-5 ms-4">
-                <h2 class="mb-md-4">{{ $produto->nome }}</h2>
-                <h4>{{ "R$".number_format($produto->preco, 2, ",", ".") }}</h4>
-                <p>{{ $produto->descricao }}</p>
+                <h2 class="mb-md-4">{{ $produto['produto']->nome }}</h2>
+                <h4>{{ "R$".number_format($produto['produto']->preco, 2, ",", ".") }}</h4>
+                <p>{{ $produto['produto']->descricao }}</p>
 
                 <div class="tamanhos d-flex flex-row justify-content-between">
                     <div>PP</div>

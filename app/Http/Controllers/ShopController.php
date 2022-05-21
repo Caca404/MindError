@@ -46,20 +46,58 @@ class ShopController extends Controller
     }
 
     public function produto($id){
-
+        $produtoWithImgs = array();
         $produto = Produto::findOrFail($id);
+        $imgs = ImagensProduto::whereRaw("id_produto = ?", [$produto->id])->get();
+
+        $produtoWithImgs['produto'] = $produto;
+        $produtoWithImgs['imgs'] = $imgs;
 
     	return view("produto", [
-            "produto" => $produto
+            "title" => $produto->nome." | ErrorMind",
+            "produto" => $produtoWithImgs
         ]);
     }
 
-    public function addProduto(){
+    public function addProdutoView(){
 
     	return view("addProduto");
     }
 
-    public function adicionarProduto(Request $request){
+    public function myProdutos()
+    {
+        $produtos = array();
+        $todosProdutos = Produto::whereRaw("id_user = ?", [auth()->user()->id])->get();
+
+        $aux = 0;
+        foreach ($todosProdutos as $produto) {
+            $imgs = ImagensProduto::whereRaw("id_produto = ?", [$produto->id])->get();
+
+            $produtos[$aux]['produto'] = $produto;
+            $produtos[$aux++]['imgs'] = $imgs;
+        }
+
+        return view("meusProdutos", [
+            "produtos" => $produtos
+        ]);
+    }
+
+    public function removeProduto(Request $request)
+    {
+        
+    }
+
+    public function editProdutoView()
+    {
+        
+    }
+
+    public function editProduto(Request $request)
+    {
+        
+    }
+
+    public function addProduto(Request $request){
 
         $produto = new Produto();
         $produto->nome = $request->nome;
@@ -67,6 +105,7 @@ class ShopController extends Controller
         $produto->preco = $request->preco;
         $produto->tipo = $request->tipo;
         $produto->descricao = $request->descricao;
+        $produto->id_user = auth()->user()->id;
 
         $produto->save();
         $id_produto = $produto->id;

@@ -21,11 +21,12 @@ Route::get('/jogos/{type}', [ShopController::class, "jogos"]);
 Route::get('/colecionaveis/{type}', [ShopController::class, "colecionaveis"]);
 Route::get('/acessorios/{type}', [ShopController::class, "acessorios"]);
 Route::get('/produto/{id}', [ShopController::class, "produto"]);
-Route::get('/addProduto', [ShopController::class, "addProduto"]);
+Route::get('/addProduto', [ShopController::class, "addProdutoView"])->middleware('auth');
+Route::get('/meusProdutos', [ShopController::class, "myProdutos"])->middleware('auth');
 Route::get('/pesquisa', [ShopController::class, "pesquisa"]);
 
 
-Route::post('/addProduto', [ShopController::class, "adicionarProduto"]);
+Route::post('/addProduto', [ShopController::class, "addProduto"]);
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

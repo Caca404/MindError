@@ -1,4 +1,4 @@
-$(".carousel-inner, .card-body, .cardImgDefault").click(function(){
+$(".card").click(function(){
     var id = $(this).closest(".card").attr("data-id");
     location.href = "/produto/"+id;
 });
