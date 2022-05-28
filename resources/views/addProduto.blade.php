@@ -4,11 +4,11 @@
 
 @section('content')
 
-<div class="container">
-    <form class="container" action="/addProduto" method="post" enctype="multipart/form-data">
+<div class="container" >
+    <form class="container">
         @csrf
-        <h1>Adicionar Produto</h1>
-        <hr  class="my-4">
+        <h1 id="titleForm">Adicionar Produto</h1>
+        <hr class="my-4">
         <div class="row g-3">
             <div class="col-12 col-md-6">
                 <label for="nome" class="form-label">Nome</label>
@@ -17,10 +17,6 @@
             <div class="col-12 col-md-6">
                 <label for="preco" class="form-label">Preço</label>
                 <input type="number" min="0" step="0.05" name="preco" id="preco" class="form-control" required>
-            </div>
-            <div class="col-12 col-md-6">
-                <label for="img" class="form-label">Imagem</label>
-                <input type="file" name="img[]" id="img" class="form-control" multiple>
             </div>
             <div class="col-12 col-md-6">
                 <label for="tipo" class="form-label">Tipo</label>
@@ -47,15 +43,11 @@
                 <textarea name="descricao" id="descricao" cols="30" rows="5" class="form-control" required></textarea>
             </div>
             <div class="col-12 text-center">
-                <button class="btn btn-success px-5 py-2">Criar</button>
+                <input id="nextPageForm" type="button" class="btn btn-success px-5 py-2" value="Próximo">
             </div>
         </div>
-        
-
-
     </form>
 </div>
-
-
-
 @endsection
+
+@section('script', 'addProduto')

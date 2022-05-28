@@ -1,102 +1,127 @@
-nav:first-child span{
+nav:first-child span {
     color: white !important;
     word-break: break-all;
 }
-nav:first-child span a{
+
+nav:first-child span a {
     color: white !important;
     text-decoration: none;
     font-weight: bold;
 }
-nav:first-child span a:hover{
+
+nav:first-child span a:hover {
     color: #27ff00 !important;
     text-decoration: underline;
 }
-footer ul a:hover{
+
+footer ul a:hover {
     color: #27ff00 !important;
 }
-footer ul li{
+
+footer ul li {
     display: inline;
     margin-right: 5px;
     margin-left: 5px;
 }
-footer ul{
+
+footer ul {
     padding-left: 0 !important;
 }
-footer .row div{
+
+footer .row div {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.dropdown-toggle{
+
+.dropdown-toggle {
     color: white !important;
 }
-.dropdown-menu{
+
+.dropdown-menu {
     background-color: white !important;
 }
-.dropdown-item{
+
+.dropdown-item {
     color: black !important;
 }
-.dropdown-item:hover{
+
+.dropdown-item:hover {
     color: black !important;
     background-color: #b28df8 !important;
 }
-.dropdown-menu li:hover{
+
+.dropdown-menu li:hover {
     background-color: #bf04b9 !important;
 }
-.btn-outline-purple{
+
+.btn-outline-purple {
     border: 1px solid #bf04b9;
     color: #bf04b9;
     background-color: transparent;
 }
-.btn-outline-purple:hover{
+
+.btn-outline-purple:hover {
     color: white;
     background-color: #bf04b9;
 }
-.btn-purple-li{
+
+.btn-purple-li {
     color: white;
     background-color: #22005f;
     border: 1px solid #22005f;
 }
-.btn-purple-li:hover{
+
+.btn-purple-li:hover {
     background-color: #31195d;
     border: 1px solid #31195d;
     color: white;
 }
-@media (min-width: 992px){
-    #search-li{
+
+@media (min-width: 992px) {
+    #search-li {
         display: none;
     }
-    nav:last-child hr{
+
+    nav:last-child hr {
         display: none;
     }
 }
-@media (max-width: 991px){
-    #search{
-        display: none!important;
+
+@media (max-width: 991px) {
+    #search {
+        display: none !important;
     }
 }
-#endereco ul{
+
+#endereco ul {
     list-style-type: disclosure-closed;
 }
-#contato ul{
+
+#contato ul {
     list-style-type: none;
     padding-left: inherit;
 }
-#contato i{
+
+#contato i {
     font-size: 25px;
 }
-#contato li{
+
+#contato li {
     margin-bottom: 1em;
 }
-.navbar-brand{
+
+.navbar-brand {
     margin-left: 10px;
 }
-nav:last-child hr{
+
+nav:last-child hr {
     background-color: #004827;
     padding: 1px 0;
     opacity: 0.5;
 }
-.card{
+
+.card {
     /* padding-top: calc(var(--bs-gutter-x)/ 2); */
     border-radius: 10px;
     width: 250px;
@@ -105,35 +130,56 @@ nav:last-child hr{
     margin-left: 10px;
     margin-bottom: 20px;
 }
-.card:hover{
+
+.card:hover {
     box-shadow: 0px 0px 10px;
     transition: 0.1s linear all;
     cursor: pointer;
     padding: 0;
 }
-.card img{
+
+.card img {
     border-radius: 10px 10px 0px 0px;
     border: none;
 }
+
 @media (min-width: 1200px) {
-    .container, .container-lg, .container-md, .container-sm, .container-xl {
+
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl {
         max-width: 1200px !important;
     }
 }
 
-.image_produto{
+.image_produto {
     display: flex;
     justify-content: center;
 }
 
-.card_link{
+.card_link {
     text-decoration: none;
     color: black;
 }
-.card_link:hover{
+
+.card_link:hover {
     color: black;
 }
 
-.user{
+.user {
     cursor: pointer;
+}
+
+#drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 20px;
+    width: 480px;
+    margin: 100px auto;
+    padding: 50px;
+}
+
+#drop-area.highlight {
+    border-color: purple;
 }

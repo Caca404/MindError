@@ -19,6 +19,6 @@
     </div>
 </div>
 
-
-
 @endsection
+
+@section('script', 'main')

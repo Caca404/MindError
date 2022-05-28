@@ -114,7 +114,6 @@
         </div>
     </section>
 
-
-
-
 @endsection
+
+@section('script', 'main')

@@ -193,4 +193,9 @@ class ShopController extends Controller
             "produtos" => $resultados
         ]);
     }
+
+    public function getImagemInputTemplate()
+    {
+        return view("TemplateImgInput");
+    }
 }

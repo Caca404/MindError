@@ -25,6 +25,6 @@
     @endif
 </div>
 
-
-
 @endsection
+
+@section('script', 'main')
