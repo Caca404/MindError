@@ -177,7 +177,10 @@ nav:last-child hr {
     border-radius: 20px;
     width: 480px;
     margin: 100px auto;
-    padding: 50px;
+    padding-top: 30px;
+    padding-bottom: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 #drop-area.highlight {

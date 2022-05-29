@@ -198,4 +198,10 @@ class ShopController extends Controller
     {
         return view("TemplateImgInput");
     }
+
+    public function getCarrosselImgs()
+    {
+        return view("carrosselImgs");
+    }
+    
 }

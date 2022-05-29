@@ -23,6 +23,7 @@ Route::get('/acessorios/{type}', [ShopController::class, "acessorios"]);
 Route::get('/produto/{id}', [ShopController::class, "produto"]);
 Route::get('/addProduto', [ShopController::class, "addProdutoView"])->middleware('auth');
 Route::get('/getImagemInput', [ShopController::class, "getImagemInputTemplate"]);
+Route::get('/getCarrosselImgs', [ShopController::class, "getCarrosselImgs"]);
 Route::get('/meusProdutos', [ShopController::class, "myProdutos"])->middleware('auth');
 Route::get('/pesquisa', [ShopController::class, "pesquisa"]);
 

@@ -33,7 +33,7 @@ $("#nextPageForm").click(function () {
         dataType: "html"
     }).done(function (response) {
         console.log(response);
-        $("main form hr").next().remove();
+        $("main form").empty();
         $("#titleForm").text("Adicionar Imagens");
         $("main form").append(response);
 
@@ -41,18 +41,52 @@ $("#nextPageForm").click(function () {
         console.log("Request failed: " + textStatus);
     });
 
+
     // for (var pair of formData.entries()) {
     //     console.log(pair[0] + ', ' + pair[1]);
     // }
 });
 
 function handleFiles(files) {
-    console.log(files);
-}
 
-// ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-//     document.getElementById('drop-area').addEventListener(eventName, preventDefaults, false);
-// });
+    $.ajax({
+        url: "/getCarrosselImgs",
+        method: "GET",
+        dataType: "html"
+    }).done(function (response) {
+        console.log(response);
+        var itemCarousel = "";
+        var divCarouselItem = "";
+        var img = "";
+
+        $("main form").parent().first().attr("id", "");
+        $("main form").empty();
+        $("main form").append(response);
+
+        $(files).each(function(){
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                divCarouselItem = document.createElement("div");
+                $(divCarouselItem).addClass("carousel-item");
+                if($(".carousel-inner").children().length == 0) $(divCarouselItem).addClass("active");
+
+                img = document.createElement("img");
+                $(img).addClass("d-block w-100");
+                $(divCarouselItem).append($(img));
+                
+                $(img).attr('src', e.target.result);
+                $(img).hide();
+                $(img).fadeIn(650);
+
+                $(".carousel-inner").append(divCarouselItem);
+            }
+            reader.readAsDataURL($(this)[0]);
+        });
+
+    }).fail(function (jqXHR, textStatus) {
+        console.log("Request failed: " + textStatus);
+    });
+}
 
 // function handleFiles(files) {
 //     ([...files]).forEach(uploadFile)
