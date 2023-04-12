@@ -6,6 +6,10 @@
 .card:nth-child(6) { grid-area: bottomLeft; }
 .card:nth-child(7) { grid-area: bottomRight; }
 
+.card{
+    box-shadow: 0px 0px 5px rgb(88, 88, 88);
+}
+
 @media screen and (min-width: 670px) {
     .grid-container {
         display: grid;
