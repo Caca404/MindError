@@ -1,186 +1,258 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>@yield('title')</title>
 
-        <!-- Styles -->
-        {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"> --}}
-        <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-        <link rel="stylesheet" href="css/owlCarousel/owl.carousel.min.css">
-        <link rel="stylesheet" href="css/owlCarousel/owl.theme.default.min.css">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@yield('title')</title>
 
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <link rel="stylesheet" href="css/@yield('style').css" />
+    <!-- Styles -->
+    <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/owlCarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owlCarousel/owl.theme.default.min.css">
 
-    </head>
-    <body style="background-color: #5d4c7a">
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #22005f;">
-                <div class="container px-md-0">
-                    <div class="d-flex">
-                        <button class="navbar-toggler h-50 align-self-center" 
-                            type="button" data-bs-toggle="collapse" data-bs-target="#navbar" 
-                            aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="css/@yield('style').css" />
 
-                            <span class="navbar-toggler-icon"></span>
+</head>
+
+<body style="background-color: #5d4c7a">
+    <header x-data="{ openPrincipalNav: false }">
+        <nav style="background-color: #22005f;" class="p-3">
+            <div class="md:container md:px-5 flex flex-row justify-between md:mx-auto items-center">
+                <a href="/" class="text-white text-center ml-3 lg:ml-0">
+                    <h1 id="nome_site">ErrorMind</h1>
+                </a>
+                <form class="hidden md:flex md:w-1/2" id="search" action="/pesquisa" method="GET">
+                    @csrf
+                    <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+                    <div class="relative w-full">
+                        <input type="search" id="search" class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Pesquisar..." required>
+                        <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">
+                            <i class="fas fa-search"></i>
                         </button>
-                        <a href="/" class="navbar-brand text-center ms-3 ms-lg-0">
-                            <h1 id="nome_site">ErrorMind</h1>
-                        </a>
                     </div>
-                    <form class="d-none d-lg-flex col-5" id="search" action="/pesquisa" method="GET">
+                </form>
+                @auth
+                    <li class="nav-item dropstart dropdown" style="list-style-type: none">
+                        <picture class="user dropdown-toggle" id="user_account" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img style="color:white;" src="/img/account.svg" alt="TEste">
+                        </picture>
+                        <ul class="dropdown-menu me-3 ms-lg-0" aria-labelledby="user_account">
+                            <li>
+                                <a class="dropdown-item" href="/addProduto">Adicionar Produto</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/meusProdutos">Meus Produtos</a>
+                            </li>
+                            <li>
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    <a class="dropdown-item" href="/logout"
+                                        onclick="event.preventDefault();this.closest('form').submit();">
+                                        Sair
+                                    </a>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endauth
+                @guest
+                    <div class="md:flex md:flex-row">
+                        <div class="md:relative md:block hidden md:mr-10" x-data="{ open: false }" @click.away="open = false">
+                            <button id="shopCart"  @click="open = !open">
+                                <i class="fas fa-shopping-cart text-white fa-lg"></i>
+                            </button>
+                            <div x-show="open"
+                                x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="z-10 bg-white absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48" style="display:none;">
+                                    <div class="flex flex-col divide-y divide-gray-400">
+                                        <div class="shoppHeader text-center">
+                                            <h5 class="p-2"><b>Carrinho</b></h5>
+                                        </div>
+                                        <div class="shoppBody p-2">
+                                            O carrinho está vazio.
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="md:relative md:block hidden" x-data="{ open: false }" @click.away="open = false">
+                            <button id="conta" @click="open = !open">
+                                <i class="fas fa-user text-white fa-lg"></i>
+                            </button>
+                            <div x-show="open"
+                                x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="dropdownNavbar z-10 bg-white absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48" style="display:none;">
+                                    <div class="flex flex-col p-2">
+                                        <a class="p-1 rounded" href="/login">Login</a>
+                                        <a class="p-1 rounded" href="/register">Criar conta</a>
+                                    </div>
+                            </div>
+                        </div>
+                        <button class="md:hidden rounded-lg focus:outline-none focus:shadow-outline text-white"
+                            @click="openPrincipalNav = !openPrincipalNav">
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+                                <path x-show="!openPrincipalNav" fill-rule="evenodd"
+                                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+                                    clip-rule="evenodd"></path>
+                                <path x-show="openPrincipalNav" fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </div>
+                @endguest
+            </div>
+        </nav>
+        <div class="bg-green-700 p-3">
+            <nav class="container px-5 flex-col flex-grow md:pb-0 md:flex md:justify-around md:flex-row md:mx-auto" id="navbar" 
+                :class="{ 'flex': openPrincipalNav, 'hidden': !openPrincipalNav }">
+                <div class="my-4 md:m-0 md:hidden" id="search-li">
+                    <form class="flex lg:hidden w-full" action="/pesquisa" method="GET">
                         @csrf
-                        <div class="input-group">
-                            <input class="form-control" type="search" placeholder="Pesquisar..." aria-label="Search" name="search" autocomplete="off">
-                            <button class="btn btn-secondary" type="submit">
+                        <label for="search-li" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                        <div class="relative w-full">
+                            <input type="search" id="search-li" class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Pesquisar..." required>
+                            <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
                     </form>
-                    @auth
-                        <li class="nav-item dropstart dropdown" style="list-style-type: none">
-                            <picture class="user dropdown-toggle" id="user_account" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img style="color:white;" src="/img/account.svg" alt="TEste"> 
-                            </picture>
-                            <ul class="dropdown-menu me-3 ms-lg-0" aria-labelledby="user_account">
-                                <li>
-                                    <a class="dropdown-item" href="/addProduto">Adicionar Produto</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/meusProdutos">Meus Produtos</a>
-                                </li>
-                                <li>
-                                    <form action="/logout" method="POST">
-                                        @csrf
-                                        <a class="dropdown-item" href="/logout" onclick="event.preventDefault();this.closest('form').submit();">
-                                            Sair
-                                        </a>
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    @endauth
-                    @guest
-                        <div>
-                            <div class="btn-group accountEnter me-3">
-                                <a class="" href="#" id="shopCart" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="shopCart">
-                                    Alguma coisa
-                                </div>
-                            </div>
-                            <div class="btn-group accountEnter">
-                                <a class="" href="#" id="conta" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="true">
-                                    <i class="fas fa-user"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end mt-0" aria-labelledby="conta">
-                                    <li><a class="dropdown-item" href="/login">Login</a></li>
-                                    <li><a class="dropdown-item" href="/register">Criar conta</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                </div>
+                <div class="relative" x-data="{ open: false }" @click.away="open = false">
+                    <button id="navbarDropdownMenuLink" @click="open = !open" class="text-gray-200 w-full md:w-auto md:border-0 md:py-0 border-b border-slate-300 py-2">
+                        Vestuário <i class="fas fa-caret-down fa-sm"></i>
+                    </button>
+                    <div x-show="open"
+                        x-transition:enter="transition ease-out duration-100"
+                        x-transition:enter-start="transform opacity-0 scale-95"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-75"
+                        x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-95"
+                        class="dropdownNavbar z-10 bg-white absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-32" style="display:none;">
                         
-                    @endguest
+                        <div class="flex flex-col p-2">
+                            <a class="p-1 rounded" href="/vestuario/chapeu">Chapéus</a>
+                            <a class="p-1 rounded" href="/vestuario/oculos">Óculos</a>
+                            <a class="p-1 rounded" href="/vestuario/moletom">Moletons</a>
+                            <a class="p-1 rounded" href="/vestuario/camisa">Camisas</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative" x-data="{ open: false }" @click.away="open = false">
+                    <button id="navbarDropdownMenuLink1" @click="open = !open" class="text-gray-200 w-full md:w-auto md:border-0 md:py-0 border-b border-slate-300 py-2">
+                        Jogos <i class="fas fa-caret-down fa-sm"></i>
+                    </button>
+                    <div x-show="open"
+                        x-transition:enter="transition ease-out duration-100"
+                        x-transition:enter-start="transform opacity-0 scale-95"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-75"
+                        x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-95"
+    
+                        class="dropdownNavbar z-10 bg-white absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-40" style="display:none;">
+                        
+                        <div class="flex flex-col p-3">
+                            <a class="p-1 rounded" href="/jogos/tabuleiro">Tabuleiros</a>
+                            <a class="p-1 rounded" href="/jogos/rpg">RPG</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative" x-data="{ open: false }" @click.away="open = false">
+                    <button id="navbarDropdownMenuLink2" @click="open = !open" class="text-gray-200 w-full md:w-auto md:border-0 md:py-0 border-b border-slate-300 py-2">
+                        Colecionáveis <i class="fas fa-caret-down fa-sm"></i>
+                    </button>
+                    <div x-show="open"
+                        x-transition:enter="transition ease-out duration-100"
+                        x-transition:enter-start="transform opacity-0 scale-95"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-75"
+                        x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-95"
+    
+                        class="dropdownNavbar z-10 bg-white absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-40" style="display:none;">
+                        <div class="p-3 flex flex-col">
+                            <a class="p-1 rounded" href="/colecionaveis/poster">Pôsters</a>
+                            <a class="p-1 rounded" href="/colecionaveis/actionFigure">Action figures</a>
+                            <a class="p-1 rounded" href="/colecionaveis/pop">Pop</a>
+                            <a class="p-1 rounded" href="/colecionaveis/pelucia">Pelúcias</a>
+                            <a class="p-1 rounded" href="/colecionaveis/lego">Lego</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative" x-data="{ open: false }" @click.away="open = false">
+                    <button id="navbarDropdownMenuLink3" @click="open = !open" class="text-gray-200 w-full md:w-auto md:py-0 py-2">
+                        Acessórios <i class="fas fa-caret-down fa-sm"></i>
+                    </button>
+                    <div x-show="open"
+                        x-transition:enter="transition ease-out duration-100"
+                        x-transition:enter-start="transform opacity-0 scale-95"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-75"
+                        x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-95"
+    
+                        class="dropdownNavbar z-10 bg-white absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-40" style="display:none;">
+    
+                            <div class="flex flex-col p-3">
+                                <a class="p-1 rounded" href="/acessorios/mochila">Mochilas</a>
+                                <a class="p-1 rounded" href="/acessorios/chaveiro">Chaveiros</a>
+                                <a class="p-1 rounded" href="/acessorios/maquiagem">Maquiagem</a>
+                                <a class="p-1 rounded" href="/acessorios/bijuteria">Bijuterias</a>
+                                <a class="p-1 rounded" href="/acessorios/fones">Fones personalizados</a>
+                            </div>
+                    </div>
                 </div>
             </nav>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-                <div class="collapse navbar-collapse w-100 px-0" id="navbar">
-                    <ul class="navbar-nav w-100 container-lg justify-content-between">
-                        <li class="nav-item mx-3 mt-2 mx-lg-0 mt-lg-0 d-lg-none" id="search-li">
-                            <form class="d-flex d-lg-none" action="/pesquisa" method="GET">
-                                @csrf
-                                <div class="input-group">
-                                    <input class="form-control" type="search" placeholder="Pesquisar..." aria-label="Search" name="search" autocomplete="off">
-                                    <button class="btn btn-secondary" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </form>
-                            <hr>
-                        </li>
-                        <li class="nav-item ms-3 ms-lg-0 dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="true">
-                                Vestuário
-                            </a>
-                            <ul class="dropdown-menu me-3 ms-lg-0" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="/vestuario/chapeu">Chapéus</a></li>
-                                <li><a class="dropdown-item" href="/vestuario/oculos">Óculos</a></li>
-                                <li><a class="dropdown-item" href="/vestuario/moletom">Moletons</a></li>
-                                <li><a class="dropdown-item" href="/vestuario/camisa">Camisas</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item ms-3 ms-lg-0 dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="true">
-                                Jogos
-                            </a>
-                            <ul class="dropdown-menu me-3 ms-lg-0" aria-labelledby="navbarDropdownMenuLink1">
-                                <li><a class="dropdown-item" href="/jogos/tabuleiro">Tabuleiros</a></li>
-                                <li><a class="dropdown-item" href="/jogos/rpg">RPG</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item ms-3 ms-lg-0 dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="true">
-                                Colecionáveis
-                            </a>
-                            <ul class="dropdown-menu me-3 ms-lg-0" aria-labelledby="navbarDropdownMenuLink2">
-                                <li><a class="dropdown-item" href="/colecionaveis/poster">Pôsters</a></li>
-                                <li><a class="dropdown-item" href="/colecionaveis/actionFigure">Action figures</a></li>
-                                <li><a class="dropdown-item" href="/colecionaveis/pop">Pop</a></li>
-                                <li><a class="dropdown-item" href="/colecionaveis/pelucia">Pelúcias</a></li>
-                                <li><a class="dropdown-item" href="/colecionaveis/lego">Lego</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item ms-3 ms-lg-0 dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="true">
-                                Acessórios
-                            </a>
-                            <ul class="dropdown-menu me-3 ms-lg-0" aria-labelledby="navbarDropdownMenuLink3">
-                                <li><a class="dropdown-item" href="/acessorios/mochila">Mochilas</a></li>
-                                <li><a class="dropdown-item" href="/acessorios/chaveiro">Chaveiros</a></li>
-                                <li><a class="dropdown-item" href="/acessorios/maquiagem">Maquiagem</a></li>
-                                <li><a class="dropdown-item" href="/acessorios/bijuteria">Bijuterias</a></li>
-                                <li><a class="dropdown-item" href="/acessorios/fones">Fones personalizados</a></li>
-                            </ul>
-                        </li>
-                    </ul>     
-                </div>
-            </nav>
-        </header>
-        <main class="container-xl mx-auto bg-light p-5">
+        </div>
+    </header>
+    
+    <main class="xl:container xl:mx-auto bg-slate-200 p-5">
 
-            @yield('content')
+        @yield('content')
 
-        </main>
-        <footer class="text-white p-3" style="background-color: #22005f;">
-            <div class="container-lg d-flex justify-content-between align-items-center">
-                <div class="text-gray-900">
-                    <p>Todos os direitos reservados.</p>
-                </div>
-                <ul class="inlineList">
-                    <li class="me-md-2">
-                        <i class="fab fa-whatsapp fa-lg"></i> +55 (84) 92342-4223
-                    </li>
-                    <li class="me-md-2">
-                        <i class="fab fa-facebook fa-lg"></i> <a href="#" class="text-white">facebook.com/2x>y</a>
-                    </li>
-                    <li class="me-md-2">
-                        <i class="fab fa-twitter fa-lg"></i> <a href="#" class="text-white">@2x>y</a>
-                    </li>
-                </ul>
+    </main>
+    <footer class="text-white p-3" style="background-color: #22005f;">
+        <div class="lg:container lg:mx-auto lg:px-5 flex justify-between items-center">
+            <div>
+                <p>Todos os direitos reservados.</p>
             </div>
-        </footer>
-    </body>
+            <ul class="flex flex-col md:block">
+                <li class="md:me-2 mb-2 md:mb-0 md:inline md:float-left">
+                    <i class="fab fa-whatsapp fa-lg"></i> +55 (84) 92342-4223
+                </li>
+                <li class="md:me-2 mb-2 md:mb-0 md:inline md:float-left">
+                    <i class="fab fa-facebook fa-lg"></i> <a href="#" class="text-white">facebook.com/2x>y</a>
+                </li>
+                <li class="md:me-2 md:inline md:float-left">
+                    <i class="fab fa-twitter fa-lg"></i> <a href="#" class="text-white">@2x>y</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</body>
 
-    <!-- Scripts -->
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script> --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-    <script src="js/owlCarousel/owl.carousel.min.js"></script>
-    <script src="js/@yield('script').js"></script>
+<!-- Scripts -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="js/owlCarousel/owl.carousel.min.js"></script>
+<script src="js/@yield('script').js"></script>
+
 </html>

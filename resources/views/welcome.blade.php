@@ -9,7 +9,7 @@
 
     <div id="destaques">
         <div class="row">
-            <h1 class="text-center col-12">Destaques</h1>
+            <h2 class="text-center col-12">Destaques</h2>
         </div>
         <div class="row mt-3">
             <div class="grid-container h-100">
@@ -26,7 +26,7 @@
         </div>
     </div>
     <div id="posters" class="mt-5">
-        <h1 class="text-center">Pôsters</h1>
+        <h2 class="text-center">Pôsters</h2>
         <div class="owl-carousel owl-theme mt-4">
             @for($i = 0; $i < 10; $i++)
                 <div class="card">
