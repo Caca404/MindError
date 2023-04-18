@@ -19,7 +19,7 @@
 
 </head>
 
-<body style="background-color: #5d4c7a">
+<body>
     <header x-data="{ openPrincipalNav: false }">
         <nav style="background-color: #22005f;" class="p-3">
             <div class="md:container md:px-5 flex flex-row justify-between md:mx-auto items-center">
@@ -37,29 +37,64 @@
                     </div>
                 </form>
                 @auth
-                    <li class="nav-item dropstart dropdown" style="list-style-type: none">
-                        <picture class="user dropdown-toggle" id="user_account" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <img style="color:white;" src="/img/account.svg" alt="TEste">
-                        </picture>
-                        <ul class="dropdown-menu me-3 ms-lg-0" aria-labelledby="user_account">
-                            <li>
-                                <a class="dropdown-item" href="/addProduto">Adicionar Produto</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/meusProdutos">Meus Produtos</a>
-                            </li>
-                            <li>
-                                <form action="/logout" method="POST">
-                                    @csrf
-                                    <a class="dropdown-item" href="/logout"
-                                        onclick="event.preventDefault();this.closest('form').submit();">
-                                        Sair
-                                    </a>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
+                    <div class="md:flex md:flex-row">
+                        <div class="md:relative md:block hidden md:mr-10" x-data="{ open: false }" @click.away="open = false">
+                            <button id="shopCart"  @click="open = !open">
+                                <i class="fas fa-shopping-cart text-white fa-lg"></i>
+                            </button>
+                            <div x-show="open"
+                                x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="z-10 bg-white absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48" style="display:none;">
+                                    <div class="flex flex-col divide-y divide-gray-400">
+                                        <div class="shoppHeader text-center">
+                                            <h5 class="p-2"><b>Carrinho</b></h5>
+                                        </div>
+                                        <div class="shoppBody p-2">
+                                            O carrinho está vazio.
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="md:relative md:block hidden" x-data="{ open: false }" @click.away="open = false">
+                            <button id="conta" @click="open = !open">
+                                <i class="fas fa-user text-white fa-lg"></i>
+                            </button>
+                            <div x-show="open"
+                                x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="dropdownNavbar z-10 bg-white absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48" style="display:none;">
+                                    <div class="flex flex-col p-2 w-full">
+                                        <form action="/logout" method="POST" class="p-1 rounded w-full block">
+                                            @csrf
+                                            <a class="p-1 rounded w-full block" href="/logout"
+                                                onclick="event.preventDefault();this.closest('form').submit();">
+                                                Sair
+                                            </a>
+                                        </form>
+                                    </div>
+                            </div>
+                        </div>
+                        <button class="md:hidden rounded-lg focus:outline-none focus:shadow-outline text-white"
+                            @click="openPrincipalNav = !openPrincipalNav">
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+                                <path x-show="!openPrincipalNav" fill-rule="evenodd"
+                                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+                                    clip-rule="evenodd"></path>
+                                <path x-show="openPrincipalNav" fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </div>
                 @endauth
                 @guest
                     <div class="md:flex md:flex-row">

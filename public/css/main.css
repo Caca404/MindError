@@ -1,3 +1,7 @@
+body{
+    background-color: #5d4c7a;
+}
+
 .card:nth-child(1) { grid-area: destaque; }
 .card:nth-child(2) { grid-area: topLeft; }
 .card:nth-child(3) { grid-area: topRight; }
@@ -41,11 +45,6 @@ footer p{
     margin-bottom: 0;
 }
 
-#nome_site{
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight:500;
-}
-
 .card{
     box-shadow: 0px 0px 3px rgb(95, 95, 95);
     border-radius: 5px;
@@ -62,28 +61,4 @@ footer p{
 
 .dropdownNavbar a:hover{
     background-color: #be99ff;
-}
-
-h1{
-    font-size: calc(1rem*2.5);
-}
-
-h2{
-    font-size: calc(1rem*2);
-}
-
-h3{
-    font-size: calc(1rem*1.75);
-}
-
-h4{
-    font-size: calc(1rem*1.5);
-}
-
-h5{
-    font-size: calc(1rem*1.25);
-}
-
-h6{
-    font-size: 1rem;
 }

@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: Righteous;
+    src: url('../font/Righteous-Regular.ttf');
+}
+
+h1{
+    font-size: calc(1rem*2.5);
+}
+
+h2{
+    font-size: calc(1rem*2);
+}
+
+h3{
+    font-size: calc(1rem*1.75);
+}
+
+h4{
+    font-size: calc(1rem*1.5);
+}
+
+h5{
+    font-size: calc(1rem*1.25);
+}
+
+h6{
+    font-size: 1rem;
+}
+
+#nome_site{
+    font-family: Righteous, Arial, sans-serif;
+    font-weight: 400;
+}
